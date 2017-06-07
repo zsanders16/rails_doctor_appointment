@@ -1,0 +1,25 @@
+<%= form_for @appointment do |f| %>
+    <div class="form-group">
+        <%= f.label :doctor_id, "For" %>
+        <%= f.select :doctor_id, options_for_select(@doctor_selection) %>
+    </div>
+    <div class="form-group">
+        <%= f.label  :patient_id, 'Select a Patient' %>
+        <%= f.select :patient_id, options_for_select(@patients_selection) %>
+    </div>
+    <div class="form-group">
+        <%= f.label :date %>
+        <%= f.date_field :date %>
+    </div>
+    <div class="form-group">
+        <%= f.label :time %>
+        <%= f.time_field :time %>
+    </div>
+    <div class="form-group">
+        <%= f.label :clinic %>
+        <%= f.text_field :clinic %>
+    </div>
+    <div class="form-group">
+        <%= f.submit 'Submit', class: 'btn btn-primary'%>
+    </div>
+<% end %>

@@ -1,0 +1,44 @@
+<h1>Doctor <%= @doctor.name %>'s Appointments<span><%= link_to 'Back to Doctors List', root_path, class: 'btn btn-primary pull-right' %></span></h1>
+
+<% if @doctor.patients.empty? %>
+    <div class='bg-primary'>
+        <h3>There are no patients assigned to this doctor.</h3>
+    </div>
+<% else %>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Clinic</th>
+                <th colspan='2'></th>
+            </tr>
+
+            <% @results.each do |r| %>
+                <tr>
+                    <td><%= r['name'] %></td>
+                    <td><%= r['age'] %></td>
+                    <td><%= r['gender'] %></td>
+                    <td><%= r['date'] %></td>
+                    <td><%= r['time'] %></td>
+                    <td><%= r['clinic'] %></td>
+                    <td><%= link_to 'Edit', edit_appointment_path(r['id']), class: 'btn btn-primary' %></td>
+                    <td><%= link_to 'Delete', appointment_path(r['id']), class: 'btn btn-primary', method: :delete %></td>
+                </tr>
+            <% end %>
+            
+        </table>
+    </div>
+<% end %>
+
+<div class="btn btn-primary" id="new-appointment">Add New Appointment</div>
+
+<div class="panel panel-default appointment invisible">
+    <div class="panel-heading">Create a New Appointment</div>
+        <div class="panel-body">
+        <%= render 'shared/form_new_appointment' %>
+    </div>
+</div>
